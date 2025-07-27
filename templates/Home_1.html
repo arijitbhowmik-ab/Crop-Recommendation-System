@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crop Recommendation System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 CDN -->
+     <link rel="icon" href="../logocrops.png" sizes="32x32" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style/home.css">
+</head>
+<body>
+
+<!-- 🔷 Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">🌱 CropRecommender</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- 🏡 Hero Section -->
+<section class="text-center py-5 bg-light">
+  <div class="container">
+    <h1 class="display-5 fw-bold text-success">Welcome to the Crop Recommendation System</h1>
+    <p class="lead mt-3">Get crop suggestions based on your soil nutrients, weather, and rainfall data.</p>
+
+    <!-- 🔘 Predict Button -->
+    <form action="/Predict">
+      <input type="submit" id="predict" value="Predict" name="predict" class="btn btn-success btn-lg mt-3">
+    </form>
+  </div>
+</section>
+
+<!-- 📘 About Section -->
+<section id="about" class="py-5">
+  <div class="container text-center">
+    <h2>About This Project</h2>
+    <p>This AI-based web app helps farmers and students find the best crop to grow based on soil and climate data.</p>
+  </div>
+</section>
+
+<!-- 📞 Contact Section -->
+<section id="contact" class="py-4 bg-light">
+  <div class="container text-center">
+    <h4>Contact Us</h4>
+    <p>Email: support@croprecommend.com | Phone: +91-1234567890</p>
+  </div>
+</section>
+
+<!-- 🔻 Footer -->
+<footer class="bg-success text-white text-center py-3">
+  <p class="mb-0">&copy; 2025 CropRecommender. All Rights Reserved.</p>
+</footer>
+
+<!-- 🌾 Modern Floating Chatbot -->
+<!-- <div id="chatbot-container">
+  <div id="chat-box">
+    <div id="chat-header">
+      <span>CropBot 🤖</span>
+      <span id="chat-close" onclick="toggleChat()">✖</span>
+    </div>
+    <div id="chat-body">
+      <div class="message bot">Hello! Ask me anything about crops. 🌾</div>
+    </div>
+    <div id="chat-input-area">
+      <input type="text" id="user-input" placeholder="Type your message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+  <div id="chat-icon" onclick="toggleChat()">💬</div>
+</div> -->
+
+
+<!-- Bootstrap JS (optional for mobile navbar) -->
+<script>
+   function toggleChat() {
+    const chatBox = document.getElementById('chat-box');
+    const chatIcon = document.getElementById('chat-icon');
+    chatIcon.style.display = chatIcon.style.display === 'none' ? 'block' : 'none';
+    chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('user-input');
+    const message = input.value.trim();
+    if (!message) return;
+
+    const chatBody = document.getElementById('chat-body');
+
+    // Add user message
+    const userMsg = document.createElement('div');
+    userMsg.className = 'message user';
+    userMsg.innerText = message;
+    chatBody.appendChild(userMsg);
+
+    // Fetch bot reply from backend
+    fetch('/chatbot_response', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message })
+    })
+    .then(res => res.json())
+    .then(data => {
+      const botMsg = document.createElement('div');
+      botMsg.className = 'message bot';
+      botMsg.innerText = data.reply;
+      chatBody.appendChild(botMsg);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    })
+    .catch(() => {
+      const errorMsg = document.createElement('div');
+      errorMsg.className = 'message bot';
+      errorMsg.innerText = "Sorry, I couldn't connect to the server.";
+      chatBody.appendChild(errorMsg);
+    });
+
+    input.value = '';
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
+    <!-- <form action="/Predict">
+        <input type="submit" id="predict" value="predict" name="predict">
+    </form> -->

@@ -1,0 +1,39 @@
+html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0fdf4;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .result-box {
+            padding: 40px;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 128, 0, 0.2);
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+        .highlight {
+            font-size: 2rem;
+            color: green;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #198754;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
