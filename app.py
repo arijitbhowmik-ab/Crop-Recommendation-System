@@ -1,4 +1,5 @@
 import joblib
+import os
 from flask import Flask, render_template, request, redirect, jsonify
 import google.generativeai as genai
 
@@ -71,4 +72,5 @@ def brain():
         return "Sorry... Error in entered values in the form. Please check the values and fill them correctly."
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Render provides PORT env variable
+    app.run(host="0.0.0.0", port=port)
